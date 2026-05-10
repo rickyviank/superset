@@ -42,6 +42,10 @@ dependencies = [
     "click>=8.0.3",
     "click-option-group",
     "colorama",
+    # Security: flask-cors 6.x remediates CVE-2024-6839, CVE-2024-6844, and
+    # CVE-2024-6866 (all fixed in 6.0.0). Resolved to flask-cors==6.0.2 in
+    # requirements/base.txt and requirements/development.txt; pip-audit on
+    # requirements/base.txt reports no flask-cors findings.
     "flask-cors>=6.0.0, <7.0",
     "croniter>=0.3.28",
     "cron-descriptor",
