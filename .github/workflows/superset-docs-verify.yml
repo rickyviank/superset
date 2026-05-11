@@ -75,6 +75,8 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version-file: './docs/.nvmrc'
+          cache: 'yarn'
+          cache-dependency-path: docs/yarn.lock
       - name: yarn install
         run: |
           yarn install --check-cache
@@ -107,6 +109,8 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version-file: './docs/.nvmrc'
+          cache: 'yarn'
+          cache-dependency-path: docs/yarn.lock
       - name: yarn install
         run: |
           yarn install --check-cache
