@@ -28,10 +28,21 @@ import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
 import DashboardListComponent from 'src/pages/DashboardList';
 import handleResourceExport from 'src/utils/export';
 
-// Cast to accept partial mock props in tests
-const DashboardList = DashboardListComponent as unknown as React.FC<
-  Record<string, any>
->;
+// External prop surface of the dashboard list page after `withToasts` wraps
+// it: only `user` is supplied by callers; the toast action props are injected
+// by the connected HOC. Mirrored here because the wrapped default export is
+// typed as `any` and the underlying `DashboardListProps` is not exported.
+export interface DashboardListTestProps {
+  user: {
+    userId?: string | number;
+    firstName?: string;
+    lastName?: string;
+    roles?: Record<string, unknown>;
+  };
+}
+
+export const DashboardList =
+  DashboardListComponent as React.ComponentType<DashboardListTestProps>;
 
 export const mockHandleResourceExport =
   handleResourceExport as jest.MockedFunction<typeof handleResourceExport>;

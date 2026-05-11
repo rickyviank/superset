@@ -24,17 +24,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { QueryParamProvider } from 'use-query-params';
 import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
 import { isFeatureEnabled } from '@superset-ui/core';
-import DashboardListComponent from 'src/pages/DashboardList';
 import {
   API_ENDPOINTS,
+  DashboardList,
   mockDashboards,
   setupMocks,
 } from './DashboardList.testHelpers';
-
-// Cast to accept partial mock props in tests
-const DashboardList = DashboardListComponent as unknown as React.FC<
-  Record<string, any>
->;
 
 jest.setTimeout(30000);
 
