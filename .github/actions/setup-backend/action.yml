@@ -40,6 +40,9 @@ runs:
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         cache: ${{ inputs.cache }}
+        cache-dependency-path: |
+          requirements/*.txt
+          pyproject.toml
     - name: Install dependencies
       run: |
         if [ "${{ inputs.install-superset }}" = "true" ]; then
