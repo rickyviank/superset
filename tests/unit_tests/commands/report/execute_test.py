@@ -1228,9 +1228,9 @@ def test_working_state_timeout_raises_timeout_error(mocker: MockerFixture) -> No
 
     mock_log = mocker.Mock()
     # Naive to match production's naive datetime.utcnow() subtraction; see PR notes.
-    mock_log.end_dttm = (
-        datetime.now(timezone.utc) - timedelta(hours=2)
-    ).replace(tzinfo=None)
+    mock_log.end_dttm = (datetime.now(timezone.utc) - timedelta(hours=2)).replace(
+        tzinfo=None
+    )
     mocker.patch(
         "superset.commands.report.execute.ReportScheduleDAO.find_last_entered_working_log",
         return_value=mock_log,
