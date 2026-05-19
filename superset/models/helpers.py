@@ -26,7 +26,7 @@ import logging
 import re
 import uuid
 from collections.abc import Hashable
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import (
     Any,
     Callable,
@@ -2162,7 +2162,9 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
             ):
                 value = db_engine_spec.convert_dttm(
                     target_type=target_native_type,
-                    dttm=datetime.utcfromtimestamp(value / 1000),
+                    dttm=datetime.fromtimestamp(value / 1000, tz=timezone.utc).replace(
+                        tzinfo=None
+                    ),
                     db_extra=db_extra,
                 )
                 value = literal_column(value)
